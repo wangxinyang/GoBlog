@@ -1,2 +1,2 @@
 # GoBlog
-GolangのWEBフレームワークGin＋Reactでブログを開発する
+GolangのWEBフレームワークGin＋Gormを開発する
