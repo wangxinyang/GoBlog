@@ -10,8 +10,10 @@ import (
 	"time"
 )
 
+var Db = InitDb()
+
 // InitDb データベースに繋がる
-func InitDb() {
+func InitDb() *gorm.DB {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		utils.DbUser,
 		utils.DbPassword,
@@ -42,4 +44,6 @@ func InitDb() {
 	sqlDB.SetMaxOpenConns(100)
 	// SetConnMaxLifetime 最大lifetime。
 	sqlDB.SetConnMaxLifetime(5 * time.Second)
+
+	return db
 }

@@ -8,6 +8,8 @@ import (
 var (
 	AppMode    string
 	HttpPort   string
+	Page       string
+	Size       string
 	DbHost     string
 	DbPort     string
 	DbUser     string
@@ -29,6 +31,8 @@ func init() {
 func loadServer(cfg *ini.File) {
 	AppMode = cfg.Section("server").Key("AppMode").MustString("debug")
 	HttpPort = cfg.Section("server").Key("HttpPort").MustString(":3100")
+	Page = cfg.Section("server").Key("Page").MustString("1")
+	Size = cfg.Section("server").Key("Size").MustString("5")
 }
 
 // データベースの環境変数を取得する
