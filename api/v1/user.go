@@ -10,11 +10,6 @@ import (
 	"strconv"
 )
 
-// UserExists user exists
-func UserExists(c *gin.Context) {
-
-}
-
 // AddUser add user
 func AddUser(c *gin.Context) {
 	var user models.User
@@ -56,6 +51,10 @@ func GetUsers(c *gin.Context) {
 	size, err := strconv.Atoi(c.DefaultQuery("size", utils.Size))
 	if err != nil {
 		log.Println("GetUsers page strconv Error: ", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code": code.ERROR,
+			"msg":  "GetUsers page strconv Error",
+		})
 		return
 	}
 	page = (page - 1) * size
@@ -72,6 +71,10 @@ func EditUser(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		log.Println("EditUser id strconv Error: ", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code": code.ERROR,
+			"msg":  "EditUser id strconv Error",
+		})
 		return
 	}
 	var user models.User
@@ -93,6 +96,10 @@ func DeleteUser(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		log.Println("DeleteUser id strconv Error: ", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code": code.ERROR,
+			"msg":  "DeleteUser id strconv Error",
+		})
 		return
 	}
 	resultCode := models.DeleteUserById(id)
